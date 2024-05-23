@@ -1,0 +1,77 @@
+# For more options and information see
+# http://rpf.io/configtxt
+# Some settings may impact device functionality.
+
+# This is the default Skiff config.txt.
+# You should customize it to your own needs.
+# Create a Skiff config, and copy this file to:
+# my/config/resources/rpi/config.txt
+
+kernel=Image
+initramfs rootfs.cpio.lz4
+
+# enable 64bits support
+arm_64bit=1
+
+# fixes rpi (3B, 3B+, 3A+, 4B and Zero W) ttyAMA0 serial console
+# dtoverlay=miniuart-bt
+# enable UART for rpi 5 ttyAMA0 serial console
+dtparam=uart0=on
+dtoverlay=uart0-pi5
+
+# enable autoprobing of Bluetooth driver without need of hciattach/btattach
+dtoverlay=krnbt=on
+
+# Avoid pi safe mode
+avoid_safe_mode=1
+
+# Enable GPIO features
+# dtparam=i2c_arm=on
+# dtparam=i2c1=on
+# dtparam=spi=on
+# dtparam=i2s=on
+
+# Audio card
+dtparam=audio=on
+# dtoverlay=hifiberry-dac
+# dtoverlay=hifiberry-dacplus
+# dtoverlay=hifiberry-digi
+# dtoverlay=iqaudio-dac
+# dtoverlay=iqaudio-dacplus
+
+# Heartbeat LED
+# dtparam=act_led_trigger=heartbeat
+
+# Allow the board to draw additional voltage.
+# Note: this sets a permanent overclock canary bit on the Pi.
+# over_voltage=4
+
+# Forces the CPU to run at maximum clock speed (expect heat)
+# force_turbo=1
+
+# Forces CPU to run in turbo for initial seconds
+# initial_turbo=45
+
+# GPU memory split
+# gpu_mem_256=128
+# gpu_mem_512=256
+# gpu_mem_1024=512
+
+# Disable overscan assuming the display supports displaying the full resolution
+# If the text shown on the screen disappears off the edge, comment this out
+disable_overscan=1
+
+# Force hdmi hotplug
+hdmi_force_hotplug=1
+
+# Uncomment to force HD and prevent 4k memory drain
+# hdmi_group=1
+# hdmi_mode=16
+# [hdmi:0]
+# hdmi_max_pixel_freq=200000000
+# [hdmi:1]
+# hdmi_max_pixel_freq=200000000
+
+# This is the modern kernel modesetting driver.
+dtoverlay=vc4-kms-v3d
+max_framebuffers=2
